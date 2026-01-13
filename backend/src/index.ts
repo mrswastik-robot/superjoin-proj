@@ -12,6 +12,7 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 
 const PORT = process.env.PORT || 3001;
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000';
 
 let tokens: any = null;
 
@@ -47,14 +48,14 @@ app.get('/auth/google', (req, res) => {
 app.get('/auth/callback', async (req, res) => {
   const code = req.query.code as string;
   if (!code) {
-    return res.redirect('http://localhost:3000?error=no_code');
+    return res.redirect(`${FRONTEND_URL}?error=no_code`);
   }
   
   try {
     tokens = await sheets.handleCallback(code);
-    res.redirect('http://localhost:3000?auth=success');
+    res.redirect(`${FRONTEND_URL}?auth=success`);
   } catch (error: any) {
-    res.redirect(`http://localhost:3000?error=${encodeURIComponent(error.message)}`);
+    res.redirect(`${FRONTEND_URL}?error=${encodeURIComponent(error.message)}`);
   }
 });
 
