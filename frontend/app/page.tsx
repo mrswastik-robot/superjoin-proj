@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-const API = 'http://localhost:3001';
+const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
 interface SyncData {
   sheet: { headers: string[]; rows: Record<string, any>[] } | null;
