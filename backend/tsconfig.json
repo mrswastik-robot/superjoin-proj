@@ -9,6 +9,7 @@
     "skipLibCheck": true,
     "outDir": "./dist",
     "rootDir": "./src",
+    "types": ["node"],
     "noImplicitAny": false,
     "strictNullChecks": false,
     "strictFunctionTypes": false,

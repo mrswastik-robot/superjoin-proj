@@ -1,6 +1,7 @@
 import mysql from 'mysql2/promise';
+import type { Pool } from 'mysql2/promise';
 
-let pool: mysql.Pool | null = null;
+let pool: Pool | null = null;
 
 export async function initDatabase(config: {
   host: string;
@@ -20,7 +21,7 @@ export async function initDatabase(config: {
   console.log('MySQL connected');
 }
 
-function getPool(): mysql.Pool {
+function getPool(): Pool {
   if (!pool) throw new Error('Database not initialized');
   return pool;
 }
