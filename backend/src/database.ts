@@ -22,7 +22,7 @@ export async function initDatabase(config: {
   };
 
   if (config.ssl) {
-    poolConfig.ssl = { rejectUnauthorized: true };
+    poolConfig.ssl = { rejectUnauthorized: false };
   }
 
   pool = mysql.createPool(poolConfig);
