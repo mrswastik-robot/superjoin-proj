@@ -29,6 +29,7 @@ async function init() {
     user: process.env.MYSQL_USER || 'superjoin',
     password: process.env.MYSQL_PASSWORD || 'superjoinpass',
     database: process.env.MYSQL_DATABASE || 'superjoin',
+    ssl: process.env.MYSQL_SSL === 'true',
   });
 }
 

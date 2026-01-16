@@ -9,12 +9,23 @@ export async function initDatabase(config: {
   user: string;
   password: string;
   database: string;
+  ssl?: boolean;
 }) {
-  pool = mysql.createPool({
-    ...config,
+  const poolConfig: any = {
+    host: config.host,
+    port: config.port,
+    user: config.user,
+    password: config.password,
+    database: config.database,
     waitForConnections: true,
     connectionLimit: 10,
-  });
+  };
+
+  if (config.ssl) {
+    poolConfig.ssl = { rejectUnauthorized: true };
+  }
+
+  pool = mysql.createPool(poolConfig);
   
   const conn = await pool.getConnection();
   conn.release();
